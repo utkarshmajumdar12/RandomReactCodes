@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="text/babel">
+        class App extends React.Component
+        {
+            state = {
+                name:'Utkarsh Majumdar',
+                age:"20",
+            }
+            handleClick=(e)=>{
+                this.setState({
+                    name:"Hello",
+                });
+                console.log(this.state);
+            }
+            handleHover(e){
+                console.log(e);
+            }
+            handleCopy(e){
+                console.log('Try being original for once!')
+            }
+            handleChange = (e)=>{
+                this.setState({
+                    name : e.target.value,
+                });
+            }
+            handleSubmit = (e) => {
+                e.preventDefault();
+                console.log("form submitted", this.state.name)
+            }
+            render(){
+                return (
+                    <div className="app-content">
+                        <h1>Hey!</h1>
+                        <p>Hi, I'm {this.state.name} and I'm {this.state.age} years old.</p>
+                        <button onClick ={this.handleClick}>Click</button>
+                        <button onMouseOver ={this.handleHover}>Hover</button>
+                        <p onCopy ={this.handleCopy}>Do not copy this</p>
+                        <form onSubmit={this.handleSubmit}>
+                            <input type="text" onChange = {this.handleChange} />
+                            <button>Submit</button>
+                            </form>
+                        </div>
+                )
+            }
+        }
+
+        ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+    
+</body>
+</html>
